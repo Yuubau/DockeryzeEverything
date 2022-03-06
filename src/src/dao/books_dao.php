@@ -20,3 +20,10 @@ function insertBook($isbn, $title,$author,$overview,$read_count){
     $pdo = getPdo();
     return insert($pdo, $sql, $params);
 }
+
+function deleteBook($isbn){
+    $sql = "DELETE FROM book WHERE isbn = " . $isbn;
+
+    $pdo = getPdo();
+    return delete($pdo ,$sql);
+}
