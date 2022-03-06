@@ -1,0 +1,16 @@
+version: '2'
+services:
+  db:
+    container_name: mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: esgi
+      MYSQL_DATABASE: library
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: esgi
+    ports:
+      - 3306:3306
+    volumes:
+      - persistent:/var/lib/mysql
+volumes:
+    persistent:
