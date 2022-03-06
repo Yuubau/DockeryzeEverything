@@ -74,3 +74,22 @@ function parse_post_request($uri) {
         return $error;
     }
 }
+
+function parse_delete_request($uri) {
+    $isbn = $uri[1];
+
+    $res = findBookByIsbn($isbn);
+    if(count($res) < 1){
+        http_response_code(404);
+        return "ISBN does not exists";
+    }
+
+    $res = deleteBook($isbn);
+    if($res){
+        http_response_code(204);
+        return;
+    } else {
+        http_response_code(422);
+        return "An error has occured";
+    }
+}
