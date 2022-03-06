@@ -27,3 +27,11 @@ function deleteBook($isbn){
     $pdo = getPdo();
     return delete($pdo ,$sql);
 }
+
+function patchBook($book_isbn,$isbn, $title,$author,$overview,$read_count){
+    $params = [$isbn, $title,$author,$overview,$read_count];
+    $sql = "UPDATE book SET isbn=?, title=?,author=?,overview=?,read_count=? WHERE isbn=".$book_isbn;
+    $pdo = getPdo();
+    return update($pdo, $sql, $params);
+}
+
