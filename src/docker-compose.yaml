@@ -14,6 +14,15 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - persistent:/var/lib/mysql
+  web:
+    build: .
+    container_name: php
+    depends_on:
+      - db
+    volumes:
+      - ./src/:/var/www/html/
+    ports:
+      - "80:80"
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
       links: 
