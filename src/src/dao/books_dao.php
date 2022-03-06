@@ -12,3 +12,11 @@ function findBookByIsbn($isbn){
     $request = "SELECT * FROM book WHERE isbn = " . strval($isbn);
     return find($pdo, $request);
 }
+
+function insertBook($isbn, $title,$author,$overview,$read_count){
+    $sql = "INSERT INTO book (isbn,title,author,overview,read_count) VALUES (?,?,?,?,?)";
+    $params = [$isbn,$title,$author,$overview,$read_count];
+
+    $pdo = getPdo();
+    return insert($pdo, $sql, $params);
+}
